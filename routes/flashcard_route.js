@@ -9,6 +9,6 @@ import { makeFlashcard } from "../controllers/flashcard_controller.js"
 const router = express.Router();
 
 
-router.get("/:word" , makeFlashcard)
+router.get("/words/:word" , makeFlashcard)
 
 export default router
