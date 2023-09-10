@@ -1,24 +1,16 @@
-/* algo:
-1) fetch data from api and store
-2) store required data in a flashcard
-3) send flashcard 
+//the main definition and logic of the router functions is here
+
+/* algo :
+1)take input of word as param of req body
+2)append to api_url
+3)store fetched http response in a variable , and convert this variable into json
+4)according to the api's actual output , i navigated it to extract what we want
+5) make a flashcard JSON and put everything in it and then send
  */
-
 import fetch from "node-fetch";
-import express from "express";
 
-const app = express();
-
-//middleware - Piece of software sitting between the req and res
-//middleware for parsing of json
-app.use(express.json());
-
-//creating a server
-app.listen(2000, () => {});
-
-//For dynamic entry of words
-app.get("/:word", async (req, res) => {
-  const word = req.params.word;
+export const makeFlashcard = async(req,res)=>{
+    const word = req.params.word;
 
   const api_url = "https://api.dictionaryapi.dev/api/v2/entries/en/" + word;
 
@@ -51,4 +43,4 @@ app.get("/:word", async (req, res) => {
     console.error(e);
     res.status(500).json({ error: "Error" });
   }
-});
+}
